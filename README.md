@@ -1,6 +1,6 @@
 # Crafting Effective SwiftUI ViewModifiers
 
-![mac128](Images/mac128.png) This is the Starter project for the video on crafting effective SwiftUI ViewModifiers
+![mac128](Images/mac128.png) This is the completed source code for the video on crafting effective SwiftUI ViewModifiers
 
 
 
