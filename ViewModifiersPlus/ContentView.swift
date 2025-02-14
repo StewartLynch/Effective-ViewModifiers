@@ -40,6 +40,8 @@ struct ContentView: View {
             }
             .sheet(isPresented: $showModal) {
                 SecondView()
+                    .navigationBarTitleDisplayMode(.inline)
+                    .inNavStack()
             }
             .navigationTitle("Crafting ViewModifiers")
         }

@@ -15,16 +15,17 @@
 
 import SwiftUI
 
-struct SecondView: View {
-    var body: some View {
-        ContentUnavailableView("Second View", systemImage: "window.vertical.open", description: Text("Sometimes in NavigationStack and sometimes as a modal sheet"))
-            .scaleEffect(1.5)
-            .padding()
-            .navigationTitle("Second View")
+struct InNavStack: ViewModifier {
+    func body(content: Content) -> some View {
+        NavigationStack {
+            content
+        }
     }
 }
 
-#Preview {
-    SecondView()
-        .inNavStack()
+extension View {
+    func inNavStack() -> some View {
+        self.modifier(InNavStack())
+    }
 }
+
