@@ -14,16 +14,35 @@
 
 
 import SwiftUI
-
 struct ContentView: View {
+    
+    @State private var showModal = false
+    @State private var text = ""
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            VStack {
+                NavigationLink(
+                    destination: SecondView()) {
+                        Image(systemName: "arrowshape.right.fill")
+                    }
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                TextField("Text Field", text: $text, axis: .vertical)
+                TextEditor(text: $text)
+            }
+            .padding()
+            .font(.title)
+            .toolbar {
+                Button {
+                    showModal.toggle()
+                } label: {
+                    Image(systemName: "eye.fill")
+                }
+            }
+            .sheet(isPresented: $showModal) {
+                SecondView()
+            }
+            .navigationTitle("Crafting ViewModifiers")
         }
-        .padding()
     }
 }
 
