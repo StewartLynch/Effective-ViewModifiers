@@ -15,7 +15,6 @@
 import SwiftUI
 
 enum SampleBackground {
-    static let colorBackground = Color.red
     static let linearGradient = LinearGradient(colors: [.red, .white], startPoint: .top, endPoint: .bottom)
     static let meshBackground = MeshGradient(
         width: 2,

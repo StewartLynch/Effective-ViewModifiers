@@ -20,10 +20,6 @@ struct ContentView: View {
     @State private var text = ""
     var body: some View {
         NavigationStack {
-            ZStack {
-                Color.red
-                    .opacity(0.3)
-                    .ignoresSafeArea()
                 VStack {
                     NavigationLink(
                         destination: SecondView()) {
@@ -50,7 +46,7 @@ struct ContentView: View {
                         .inNavStack()
                 }
                 .navigationTitle("Crafting ViewModifiers")
-            }
+                .withBackgroundView(.meshGradient(SampleBackground.meshBackground), opacity: 0.5)
         }
     }
 }

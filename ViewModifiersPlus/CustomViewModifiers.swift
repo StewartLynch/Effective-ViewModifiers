@@ -55,3 +55,37 @@ extension TextEditor {
         modifier(TextEditorStyle(style: style))
     }
 }
+
+struct WithBackgroundView: ViewModifier {
+    enum BackgroundType {
+        case color(Color)
+        case linearGradient(LinearGradient)
+        case meshGradient(MeshGradient)
+    }
+    var background: BackgroundType
+    var opacity: Double
+    
+    func body(content: Content) -> some View {
+        ZStack {
+            Group {
+                switch background {
+                    case .color(let color):
+                        color
+                    case .linearGradient(let linearGradient):
+                        linearGradient
+                    case .meshGradient(let meshGradient):
+                        meshGradient
+                }
+            }
+            .opacity(opacity)
+            .ignoresSafeArea()
+            content
+        }
+    }
+}
+
+extension View {
+    func withBackgroundView(_ background: WithBackgroundView.BackgroundType, opacity: Double = 1.0 ) -> some View {
+        modifier(WithBackgroundView(background: background, opacity: opacity))
+    }
+}

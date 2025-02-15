@@ -21,6 +21,7 @@ struct SecondView: View {
             .scaleEffect(1.5)
             .padding()
             .navigationTitle("Second View")
+            .withBackgroundView(.meshGradient(SampleBackground.meshBackground), opacity: 0.5)
     }
 }
 
