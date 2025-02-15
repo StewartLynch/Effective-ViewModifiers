@@ -20,32 +20,37 @@ struct ContentView: View {
     @State private var text = ""
     var body: some View {
         NavigationStack {
-            VStack {
-                NavigationLink(
-                    destination: SecondView()) {
-                        Image(systemName: "arrowshape.right.fill")
-                    }
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-                TextField("Text Field", text: $text, axis: .vertical)
-                    .textFieldStyle(.roundedBorder)
-                TextEditor(text: $text)
-                    .textEditorStyle(.roundedBorder)
-            }
-            .padding()
-            .font(.title)
-            .toolbar {
-                Button {
-                    showModal.toggle()
-                } label: {
-                    Image(systemName: "eye.fill")
+            ZStack {
+                Color.red
+                    .opacity(0.3)
+                    .ignoresSafeArea()
+                VStack {
+                    NavigationLink(
+                        destination: SecondView()) {
+                            Image(systemName: "arrowshape.right.fill")
+                        }
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                    TextField("Text Field", text: $text, axis: .vertical)
+                        .textFieldStyle(.roundedBorder)
+                    TextEditor(text: $text)
+                        .textEditorStyle(.roundedBorder)
                 }
+                .padding()
+                .font(.title)
+                .toolbar {
+                    Button {
+                        showModal.toggle()
+                    } label: {
+                        Image(systemName: "eye.fill")
+                    }
+                }
+                .sheet(isPresented: $showModal) {
+                    SecondView()
+                        .navigationBarTitleDisplayMode(.inline)
+                        .inNavStack()
+                }
+                .navigationTitle("Crafting ViewModifiers")
             }
-            .sheet(isPresented: $showModal) {
-                SecondView()
-                    .navigationBarTitleDisplayMode(.inline)
-                    .inNavStack()
-            }
-            .navigationTitle("Crafting ViewModifiers")
         }
     }
 }

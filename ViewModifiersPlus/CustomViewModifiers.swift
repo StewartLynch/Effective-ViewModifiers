@@ -43,6 +43,7 @@ struct TextEditorStyle: ViewModifier {
                     RoundedRectangle(cornerRadius: 5)
                         .stroke(colorScheme == .light ? Color(.systemGray4) :  Color(.systemGray6), lineWidth: 1)
                 }
+                .cornerRadius(5)
         } else {
             content
         }
