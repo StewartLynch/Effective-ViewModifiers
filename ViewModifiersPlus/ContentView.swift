@@ -27,7 +27,9 @@ struct ContentView: View {
                     }
                     .frame(maxWidth: .infinity, alignment: .trailing)
                 TextField("Text Field", text: $text, axis: .vertical)
+                    .textFieldStyle(.roundedBorder)
                 TextEditor(text: $text)
+                    .textEditorStyle(.roundedBorder)
             }
             .padding()
             .font(.title)

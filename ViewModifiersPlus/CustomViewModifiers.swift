@@ -29,3 +29,28 @@ extension View {
     }
 }
 
+struct TextEditorStyle: ViewModifier {
+    @Environment(\.colorScheme) var colorScheme
+    enum Style {
+        case plain, automatic, roundedBorder
+    }
+    var style: Style
+    func body(content: Content) -> some View {
+        if style == .roundedBorder {
+            content
+                .padding(EdgeInsets(top: -4.3, leading: 1.2, bottom: 0, trailing: 1.2))
+                .overlay {
+                    RoundedRectangle(cornerRadius: 5)
+                        .stroke(colorScheme == .light ? Color(.systemGray4) :  Color(.systemGray6), lineWidth: 1)
+                }
+        } else {
+            content
+        }
+    }
+}
+
+extension TextEditor {
+    func textEditorStyle(_ style: TextEditorStyle.Style) -> some View {
+        modifier(TextEditorStyle(style: style))
+    }
+}
